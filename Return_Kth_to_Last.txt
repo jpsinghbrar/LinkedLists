@@ -1,0 +1,227 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <cstring>
+#include <vector>
+#include <math.h>
+
+using namespace std;
+struct node{
+    int data;
+    node* next;
+};
+
+class node_mod
+        {
+        private:
+        node *head, *tail;
+        public:
+
+            node_mod()
+            {
+                head=NULL;
+                tail=NULL;
+            }
+        void create_node(int d)
+        {
+            node *node_x=new node;
+            node_x->data=d;
+            node_x->next=NULL;
+
+            if(head==NULL)
+            {
+                head=node_x;
+                tail=node_x;
+                node_x=NULL;
+
+            }
+            else
+            {
+                tail->next=node_x;
+                tail=node_x;
+            }
+
+
+        }
+
+        void insert_start(int d)
+        {
+            node *temp=new node;
+            temp->data=d;
+            temp->next=head;
+            head=temp;
+            temp=NULL;
+
+        }
+
+        void insert_end(int d)
+        {
+             node *temp=new node;
+             temp->data=d;
+             temp->next=NULL;
+             tail->next=temp;
+             tail=temp;
+             temp=NULL;
+        }
+
+        void insert_at_pos(int pos,int d)
+        {
+             node *prev=new node;
+             node *curr=new node;
+             node *temp=new node;
+             curr=head;
+             for(int i=0;i<pos;i++)
+             {
+                 prev=curr;
+                 curr=curr->next;
+             }
+             temp->data=d;
+             prev->next=temp;
+             temp->next=curr;
+
+        }
+
+
+        void display()
+        {
+            node *temp=new node;
+            temp=head;
+            while(temp!=NULL)
+            {
+                cout << temp->data << "\t";
+                temp=temp->next;
+            }
+        }
+
+
+
+        void delete_first()
+        {
+            node *temp=new node;
+            temp=head;
+            head=head->next;
+            delete temp;
+
+        }
+        void delete_last()
+        {
+            node *prev=new node;
+            node *curr=new node;
+            curr=head;
+            while(curr->next!=NULL)
+            {
+                prev=curr;
+                curr=curr->next;
+            }
+            tail=prev;
+            prev->next=NULL;
+            delete curr;
+        }
+        void delete_at_pos(int pos)
+        {
+            node *prev=new node;
+            node *curr=new node;
+
+            curr=head;
+            for(int i=0;i<pos;i++)
+            {
+                prev=curr;
+                curr=curr->next;
+            }
+            prev->next=curr->next;
+            delete curr;
+        }
+
+        void remove_dup()
+        {
+
+
+
+                node *temp1=new node;
+                node *temp2=new node;
+                temp1=head;
+
+
+                int count1,count2;
+                count1=0;
+                while(temp1!=NULL)
+                {
+                   count1+=1;
+                  // cout << "Array Value is : " << a[temp->data] << endl;
+                   //cout << "Data is : " << temp->data << endl;
+                   //cout << "Count value is : " << count << endl;
+
+                   temp2=temp1;
+                   count2=count1;
+                    int x1,x2;
+                   while(temp2->next!=NULL)
+                   {
+
+                       x1=temp1->data;
+                       x2=temp2->next->data;
+                       count2+=1;
+                       if(temp2->next->data==temp1->data)
+                       {
+                           temp2->next=temp2->next->next;
+                       }
+                       else {
+                           temp2 = temp2->next;
+                       }
+
+                   }
+                    temp1=temp1->next;
+
+
+                }
+        }
+
+        void display_kth_to_last(int k)
+        {
+            node *temp=new node;
+            temp=head;
+            int count=0;
+             while(temp!=NULL)
+            {
+                count+=1;
+                if(count>=k)
+                {
+                    cout << temp->data << "\t";
+                }
+
+                temp=temp->next;
+            }
+        }
+        };
+
+
+
+int main()
+
+{
+
+    node_mod obj1;
+    obj1.create_node(20);
+    obj1.create_node(25);
+    obj1.create_node(30);
+    obj1.create_node(25);
+    obj1.create_node(20);
+    obj1.create_node(40);
+    obj1.create_node(50);
+    obj1.create_node(40);
+    obj1.create_node(40);
+
+
+
+    obj1.display();
+    cout << "" << endl;
+    obj1.display_kth_to_last(4);
+    //obj1.remove_dup();
+
+    //obj1.display();
+
+    return 0;
+}
+
+
