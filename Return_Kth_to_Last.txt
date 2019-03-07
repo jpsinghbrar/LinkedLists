@@ -149,9 +149,6 @@ class node_mod
                 while(temp1!=NULL)
                 {
                    count1+=1;
-                  // cout << "Array Value is : " << a[temp->data] << endl;
-                   //cout << "Data is : " << temp->data << endl;
-                   //cout << "Count value is : " << count << endl;
 
                    temp2=temp1;
                    count2=count1;
@@ -181,11 +178,21 @@ class node_mod
         {
             node *temp=new node;
             temp=head;
+            int length=0;
             int count=0;
+            //node *temp=new node;
+            temp=head;
+            while(temp!=NULL)
+            {
+                length+=1;
+                temp=temp->next;
+            }
+
+            temp=head;
              while(temp!=NULL)
             {
                 count+=1;
-                if(count>=k)
+                if(count==length-k+1)
                 {
                     cout << temp->data << "\t";
                 }
@@ -216,10 +223,7 @@ int main()
 
     obj1.display();
     cout << "" << endl;
-    obj1.display_kth_to_last(4);
-    //obj1.remove_dup();
-
-    //obj1.display();
+    obj1.display_kth_to_last(3);
 
     return 0;
 }
