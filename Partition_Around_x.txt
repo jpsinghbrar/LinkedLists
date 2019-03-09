@@ -1,0 +1,25 @@
+void partition_around_x(int k) {
+        node *temp1 = new node;
+        node *temp2 = new node;
+        int temp;
+        temp1 = head;
+
+
+        while (temp1->next != NULL) {
+
+            temp2 = temp1->next;
+            while(temp2!= NULL)
+            {
+
+               if((temp1->data>k && temp2->data<k)|| (temp1->data==k && temp2->data<k))
+               {
+                   temp=temp1->data;
+                   temp1->data=temp2->data;
+                   temp2->data=temp;
+               }
+                temp2 = temp2->next;
+            }
+            temp1 = temp1->next;
+        }
+
+    }
