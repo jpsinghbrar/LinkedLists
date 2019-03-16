@@ -1,0 +1,24 @@
+bool intersection(node_mod* n1,node_mod* n2)
+{
+    node* temp1=new node();
+    node* temp2=new node();
+    temp1=n1->head;
+    temp2=n2->head;
+    bool val=false;
+
+    while(temp1!=NULL) {
+        while (temp2 != NULL) {
+            if (temp1 > n2->tail || temp2 > n1->tail) {
+                return false;
+            } else if (temp1 == temp2) {
+                val = true;
+            }
+
+            temp2=temp2->next;
+        }
+        temp1=temp1->next;
+        }
+    return val;
+}
+
+};
