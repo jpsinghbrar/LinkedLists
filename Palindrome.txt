@@ -1,0 +1,32 @@
+bool palindrome(node* n)
+{
+
+    static node* temp1=new node;
+    temp1=head;
+    static int c=0;
+
+    if(n->next!=NULL && c==0){
+
+        palindrome(n->next);
+    }
+
+    int x=n->data;
+    int y=temp1->data;
+
+    if(n->data!=temp1->data && c==0)
+    {
+        c=1;
+    }
+
+    temp1=temp1->next;
+
+    if(c!=0)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+
+}
